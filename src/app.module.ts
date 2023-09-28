@@ -1,16 +1,15 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { StateModule } from './state/state.module';
-import { CityModule } from './city/city.module';
-import { AddressModule } from './address/address.module';
-import { CacheModule } from './cache/cache.module';
-import { AuthModule } from './auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
-
+import { APP_GUARD } from '@nestjs/core';
+import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CityModule } from './city/city.module';
+import { AuthModule } from './auth/auth.module';
+import { RolesGuard } from './guards/roles.guard';
+import { StateModule } from './state/state.module';
+import { CacheModule } from './cache/cache.module';
+import { AddressModule } from './address/address.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
