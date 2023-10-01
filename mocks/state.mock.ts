@@ -1,4 +1,4 @@
-import { StateEntity } from '../entities/state.entity';
+import { StateEntity } from '../src/state/entities/state.entity';
 
 export const stateMock: StateEntity = {
   id: 1212,

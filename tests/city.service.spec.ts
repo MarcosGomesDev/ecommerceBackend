@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CityService } from '../city.service';
-import { CityEntity } from '../entities/city.entity';
-import { CacheService } from '../../cache/cache.service';
-import { cityMock } from '../__mocks__/city.mock';
+import { CityService } from '../src/city/city.service';
+import { CityEntity } from '../src/city/entities/city.entity';
+import { CacheService } from '../src/cache/cache.service';
+import { cityMock } from '../mocks/city.mock';
 
 describe('CityService', () => {
   let service: CityService;
