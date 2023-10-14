@@ -26,5 +26,5 @@ export class CategoryEntity {
     () => ProductEntity,
     (product: ProductEntity) => product.categoryId,
   )
-  products: ProductEntity;
+  products?: ProductEntity;
 }
