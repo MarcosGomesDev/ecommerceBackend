@@ -3,8 +3,8 @@ import { UserService } from '../src/user/user.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../src/user/entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { userEntityMock } from 'mocks/user.mock';
-import { createUserMock } from 'mocks/createUser.mock';
+import { userEntityMock } from '../mocks/user.mock';
+import { createUserMock } from '../mocks/createUser.mock';
 
 describe('UserService', () => {
   let service: UserService;
