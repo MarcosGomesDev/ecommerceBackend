@@ -25,6 +25,20 @@ export class CategoryService {
     return categories;
   }
 
+  async findCategoryById(categoryId: number): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.findOne({
+      where: {
+        id: categoryId,
+      },
+    });
+
+    if (!category) {
+      throw new NotFoundException(`categoryId ${categoryId} not found`);
+    }
+
+    return category;
+  }
+
   async createCategory(category: CreateCategoryDto): Promise<CategoryEntity> {
     const categoryExists = await this.findCategoryByName(category.name).catch(
       () => undefined,
