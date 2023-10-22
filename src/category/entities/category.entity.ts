@@ -1,4 +1,4 @@
-import { CityEntity } from '../../city/entities/city.entity';
+import { ProductEntity } from '../../product/entities/product.entity';
 import {
   Column,
   CreateDateColumn,
@@ -8,9 +8,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'state' })
-export class StateEntity {
-  @PrimaryGeneratedColumn()
+@Entity({ name: 'category' })
+export class CategoryEntity {
+  @PrimaryGeneratedColumn('rowid')
   id: number;
 
   @Column({ name: 'name', nullable: false })
@@ -22,6 +22,9 @@ export class StateEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => CityEntity, (city) => city.state)
-  cities?: CityEntity[];
+  @OneToMany(
+    () => ProductEntity,
+    (product: ProductEntity) => product.categoryId,
+  )
+  products?: ProductEntity;
 }

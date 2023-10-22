@@ -8,11 +8,12 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity({ name: 'city' })
 export class CityEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('rowid')
   id: number;
 
   @Column({ name: 'state_id', nullable: false })
@@ -24,7 +25,7 @@ export class CityEntity {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @CreateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @OneToMany(() => AddressEntity, (address) => address.city)

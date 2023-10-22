@@ -10,6 +10,8 @@ import { RolesGuard } from './guards/roles.guard';
 import { StateModule } from './state/state.module';
 import { CacheModule } from './cache/cache.module';
 import { AddressModule } from './address/address.module';
+import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -33,6 +35,8 @@ import { AddressModule } from './address/address.module';
     CacheModule,
     AuthModule,
     JwtModule,
+    CategoryModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [
