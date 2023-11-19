@@ -5,6 +5,7 @@ export class CreateTableCategory1696728259545 implements MigrationInterface {
     queryRunner.query(`
         CREATE TABLE public.category (
             id integer NOT NULL,
+            name character varying NOT NULL,
             created_at timestamp without time zone DEFAULT now() NOT NULL,
             updated_at timestamp without time zone DEFAULT now() NOT NULL,
             primary key (id)

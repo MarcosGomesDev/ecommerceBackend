@@ -22,9 +22,6 @@ export class CategoryEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(
-    () => ProductEntity,
-    (product: ProductEntity) => product.categoryId,
-  )
+  @OneToMany(() => ProductEntity, (product: ProductEntity) => product.category)
   products?: ProductEntity;
 }
