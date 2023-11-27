@@ -5,10 +5,11 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { UserEntity } from './entities/user.entity';
-import { hash } from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserType } from './enum/user-type.enum';
+import { UpdatePasswordDTO } from './dtos/updatePassword.dto';
+import { createPasswordHashed, validatePassword } from '../utils/password';
 
 @Injectable()
 export class UserService {
@@ -16,24 +17,6 @@ export class UserService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
   ) {}
-
-  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const userExist = await this.findUserByEmail(createUserDto.email).catch(
-      () => undefined,
-    );
-
-    if (userExist) {
-      throw new BadRequestException('This email is already being used!');
-    }
-
-    const passwordHashed = await hash(createUserDto.password, 10);
-
-    return this.userRepository.save({
-      ...createUserDto,
-      typeUser: UserType.Admin,
-      password: passwordHashed,
-    });
-  }
 
   async getUserById(userId: number): Promise<UserEntity> {
     return this.userRepository.findOne({
@@ -80,5 +63,48 @@ export class UserService {
     }
 
     return user;
+  }
+
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const userExist = await this.findUserByEmail(createUserDto.email).catch(
+      () => undefined,
+    );
+
+    if (userExist) {
+      throw new BadRequestException('This email is already being used!');
+    }
+
+    const passwordHashed = await createPasswordHashed(createUserDto.password);
+
+    return this.userRepository.save({
+      ...createUserDto,
+      typeUser: UserType.Admin,
+      password: passwordHashed,
+    });
+  }
+
+  async updatePasswordUser(
+    updatePasswordDto: UpdatePasswordDTO,
+    userId: number,
+  ): Promise<UserEntity> {
+    const user = await this.findUserById(userId);
+
+    const passwordHashed = await createPasswordHashed(
+      updatePasswordDto.newPassword,
+    );
+
+    const isMatch = await validatePassword(
+      updatePasswordDto.lastPassword,
+      user.password,
+    );
+
+    if (!isMatch) {
+      throw new BadRequestException('Last password invalid!');
+    }
+
+    return this.userRepository.save({
+      ...user,
+      password: passwordHashed,
+    });
   }
 }
