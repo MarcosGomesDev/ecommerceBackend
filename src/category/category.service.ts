@@ -6,7 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { CategoryEntity } from './entities/category.entity';
 import { Repository } from 'typeorm';
-import { CreateCategoryDto } from './dto/createCategory.dto';
+import { CreateCategory } from './dto/createCategory.dto';
 
 @Injectable()
 export class CategoryService {
@@ -39,16 +39,20 @@ export class CategoryService {
     return category;
   }
 
-  async createCategory(category: CreateCategoryDto): Promise<CategoryEntity> {
-    const categoryExists = await this.findCategoryByName(category.name).catch(
-      () => undefined,
-    );
+  async createCategory(
+    createCategory: CreateCategory,
+  ): Promise<CategoryEntity> {
+    const categoryExist = await this.findCategoryByName(
+      createCategory.name,
+    ).catch(() => undefined);
 
-    if (categoryExists) {
-      throw new BadRequestException('This category already exists');
+    if (categoryExist) {
+      throw new BadRequestException(
+        `Category name ${createCategory.name} exist`,
+      );
     }
 
-    return this.categoryRepository.save(category);
+    return this.categoryRepository.save(createCategory);
   }
 
   async findCategoryByName(name: string): Promise<CategoryEntity> {

@@ -51,18 +51,18 @@ describe('AuthService', () => {
   it('should return user if password invalid and email valid', async () => {
     expect(
       service.login({ ...loginUserMock, password: 'abc' }),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
   });
 
   it('should return user if email not exists', async () => {
     jest.spyOn(userService, 'findUserByEmail').mockResolvedValue(undefined);
 
-    expect(service.login(loginUserMock)).rejects.toThrowError();
+    expect(service.login(loginUserMock)).rejects.toThrow();
   });
 
   it('should return error in userService', async () => {
     jest.spyOn(userService, 'findUserByEmail').mockRejectedValue(new Error());
 
-    expect(service.login(loginUserMock)).rejects.toThrowError();
+    expect(service.login(loginUserMock)).rejects.toThrow();
   });
 });

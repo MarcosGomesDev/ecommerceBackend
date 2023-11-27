@@ -10,7 +10,7 @@ import { CategoryService } from './category.service';
 import { ReturnCategoryDto } from './dto/returnCategory.dto';
 import { UserType } from '../user/enum/user-type.enum';
 import { Roles } from '../decorators/roles.decorator';
-import { CreateCategoryDto } from './dto/createCategory.dto';
+import { CreateCategory } from './dto/createCategory.dto';
 import { CategoryEntity } from './entities/category.entity';
 
 @Roles(UserType.Admin, UserType.User)
@@ -29,7 +29,7 @@ export class CategoryController {
   @UsePipes(ValidationPipe)
   @Post()
   async createCategory(
-    @Body() category: CreateCategoryDto,
+    @Body() category: CreateCategory,
   ): Promise<CategoryEntity> {
     return this.categoryService.createCategory(category);
   }
