@@ -7,7 +7,7 @@ import { productMock } from '../mocks/product.mock';
 import { CategoryService } from '../src/category/category.service';
 import { categoryMock } from '../mocks/category.mock';
 import { createProduct } from '../mocks/createProduct.mock';
-import { ReturnDeleteProduct } from '../src/product/dto/returnDeleteProduct.dto';
+import { returnDelete } from '../mocks/returnDelete.mock';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -30,7 +30,7 @@ describe('ProductService', () => {
             find: jest.fn().mockResolvedValue([productMock]),
             findOne: jest.fn().mockResolvedValue(productMock),
             save: jest.fn().mockResolvedValue(productMock),
-            delete: jest.fn().mockResolvedValue(ReturnDeleteProduct),
+            delete: jest.fn().mockResolvedValue(returnDelete),
           },
         },
       ],
@@ -62,7 +62,7 @@ describe('ProductService', () => {
 
   it('should create a product', async () => {
     const product = await service.createProduct(createProduct);
-    expect(product).toEqual(createProduct);
+    expect(product).toEqual(productMock);
   });
 
   it('should return error if category not found', async () => {
@@ -84,14 +84,19 @@ describe('ProductService', () => {
     expect(service.findProductById(1)).rejects.toThrowError();
   });
 
-  it('should delete product', async () => {
+  it('should delete product in find by id', async () => {
     const product = await service.deleteProduct(productMock.id);
-    expect(product).toEqual(ReturnDeleteProduct);
+    expect(product).toEqual(returnDelete);
   });
 
   it('should return error if product not found', async () => {
     jest.spyOn(productRepository, 'delete').mockRejectedValue(new Error());
 
-    expect(service.deleteProduct(1)).rejects.toThrowError();
+    expect(service.deleteProduct(productMock.id)).rejects.toThrow();
+  });
+
+  it('should return deleted true in delete product', async () => {
+    const product = await service.deleteProduct(productMock.id);
+    expect(product).toEqual(returnDelete);
   });
 });

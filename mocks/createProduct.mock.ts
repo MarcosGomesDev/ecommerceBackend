@@ -5,5 +5,5 @@ export const createProduct: CreateProduct = {
   name: 'Product',
   price: 10,
   categoryId: categoryMock.id,
-  image: 'image',
+  image: 'http://image.com/image.png',
 };

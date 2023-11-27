@@ -1,0 +1,7 @@
+{
+  "files.eol": "\n",
+  "files.autoSave": "onFocusChange",
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "wordWrapColumn"
+}
