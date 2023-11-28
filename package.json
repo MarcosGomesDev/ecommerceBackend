@@ -13,6 +13,9 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "eslint:fix": "eslint src --ext .js,.ts,.tsx --fix",
+    "style:check": "prettier --check \"**/*.{ts,tsx,json}\"",
+    "style:fix": "prettier --write \"**/*.{ts,tsx,json}\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -29,7 +32,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.0",
     "bcrypt": "^5.1.1",
-    "cache-manager": "^5.2.3",
+    "cache-manager": "^5.3.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "pg": "^8.11.3",
@@ -67,6 +70,11 @@
       "json",
       "ts"
     ],
+    "moduleNameMapper": {
+      "^@app/(.*)$": "<rootDir>/src/$1",
+      "^@test/(.*)$": "<rootDir>/test/$1",
+      "^@mocks/(.*)$": "<rootDir>/mocks/$1"
+    },
     "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {

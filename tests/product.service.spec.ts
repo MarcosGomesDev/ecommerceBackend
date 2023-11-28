@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProductService } from '../src/product/product.service';
 import { Repository } from 'typeorm';
-import { ProductEntity } from '../src/product/entities/product.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { productMock } from '../mocks/product.mock';
-import { CategoryService } from '../src/category/category.service';
-import { categoryMock } from '../mocks/category.mock';
-import { createProduct } from '../mocks/createProduct.mock';
-import { returnDelete } from '../mocks/returnDelete.mock';
+import { ProductService } from '@app/product/product.service';
+import { ProductEntity } from '@app/product/entities/product.entity';
+import { CategoryService } from '@app/category/category.service';
+import { categoryMock } from '@mocks/category.mock';
+import { productMock } from '@mocks/product.mock';
+import { returnDelete } from '@mocks/returnDelete.mock';
+import { createProduct } from '@mocks/createProduct.mock';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -57,7 +57,7 @@ describe('ProductService', () => {
   it('should return error if products empty', async () => {
     jest.spyOn(productRepository, 'find').mockRejectedValue(new Error());
 
-    expect(service.findAll()).rejects.toThrowError();
+    expect(service.findAll()).rejects.toThrow();
   });
 
   it('should create a product', async () => {
@@ -70,7 +70,7 @@ describe('ProductService', () => {
       .spyOn(categoryService, 'findCategoryById')
       .mockRejectedValue(new Error());
 
-    expect(service.createProduct(createProduct)).rejects.toThrowError();
+    expect(service.createProduct(createProduct)).rejects.toThrow();
   });
 
   it('should return product by id', async () => {
@@ -81,7 +81,7 @@ describe('ProductService', () => {
   it('should return error if product not found', async () => {
     jest.spyOn(productRepository, 'findOne').mockRejectedValue(new Error());
 
-    expect(service.findProductById(1)).rejects.toThrowError();
+    expect(service.findProductById(1)).rejects.toThrow();
   });
 
   it('should delete product in find by id', async () => {

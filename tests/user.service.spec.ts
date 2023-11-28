@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../src/user/user.service';
 import { Repository } from 'typeorm';
-import { UserEntity } from '../src/user/entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { userEntityMock } from '../mocks/user.mock';
-import { createUserMock } from '../mocks/createUser.mock';
+import { UserService } from '@app/user/user.service';
+import { UserEntity } from '@app/user/entities/user.entity';
+import { userEntityMock } from '@mocks/user.mock';
+import { createUserMock } from '@mocks/createUser.mock';
 import {
   invalidUpdatePasswordMock,
   updatePasswordMock,
-} from '../mocks/updateUser.mock';
+} from '@mocks/updateUser.mock';
 
 describe('UserService', () => {
   let service: UserService;

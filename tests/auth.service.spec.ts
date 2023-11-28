@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { AuthService } from '../src/auth/auth.service';
-import { UserService } from '../src/user/user.service';
-import { userEntityMock } from '../mocks/user.mock';
 import { JwtService } from '@nestjs/jwt';
-import { jwtMock } from '../mocks/jwt.mock';
-import { loginUserMock } from '../mocks/loginUser.mock';
-import { ReturnUserDto } from '../src/user/dtos/returnUser.dto';
+import { userEntityMock } from '@mocks/user.mock';
+import { AuthService } from '@app/auth/auth.service';
+import { UserService } from '@app/user/user.service';
+import { jwtMock } from '@mocks/jwt.mock';
+import { loginUserMock } from '@mocks/loginUser.mock';
+import { ReturnUserDto } from '@app/user/dtos/returnUser.dto';
 
 describe('AuthService', () => {
   let service: AuthService;

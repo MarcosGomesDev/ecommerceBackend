@@ -1,10 +1,10 @@
+import { CategoryService } from '@app/category/category.service';
+import { CategoryEntity } from '@app/category/entities/category.entity';
+import { categoryMock } from '@mocks/category.mock';
+import { createCategoryMock } from '@mocks/createCategory.mock';
 import { Test, TestingModule } from '@nestjs/testing';
-import { CategoryService } from '../src/category/category.service';
-import { Repository } from 'typeorm';
-import { CategoryEntity } from '../src/category/entities/category.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { categoryMock } from '../mocks/category.mock';
-import { createCategoryMock } from '../mocks/createCategory.mock';
+import { Repository } from 'typeorm';
 
 describe('CategoryService', () => {
   let service: CategoryService;

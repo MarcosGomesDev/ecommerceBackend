@@ -2,14 +2,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { AddressEntity } from '../src/address/entities/address.entity';
-import { addressMock } from '../mocks/address.mock';
-import { AddressService } from '../src/address/address.service';
-import { UserService } from '../src/user/user.service';
-import { userEntityMock } from '../mocks/user.mock';
-import { CityService } from '../src/city/city.service';
-import { cityMock } from '../mocks/city.mock';
-import { createAddressMock } from '../mocks/createAddressDTO.mock';
+import { AddressService } from '@app/address/address.service';
+import { AddressEntity } from '@app/address/entities/address.entity';
+import { UserService } from '@app/user/user.service';
+import { CityService } from '@app/city/city.service';
+import { userEntityMock } from '@mocks/user.mock';
+import { cityMock } from '@mocks/city.mock';
+import { addressMock } from '@mocks/address.mock';
+import { createAddressMock } from '@mocks/createAddressDTO.mock';
 
 describe('AddressService', () => {
   let service: AddressService;
