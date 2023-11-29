@@ -12,6 +12,7 @@ import { CacheModule } from './cache/cache.module';
 import { AddressModule } from './address/address.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { CartModule } from './cart/cart.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -37,6 +38,7 @@ import { ProductModule } from './product/product.module';
     JwtModule,
     CategoryModule,
     ProductModule,
+    CartModule,
   ],
   controllers: [],
   providers: [
